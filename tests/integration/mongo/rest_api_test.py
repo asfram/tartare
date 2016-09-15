@@ -50,7 +50,9 @@ def test_post_grid_calendar_returns_success_status(app, coverage_jdr):
     files = {'file': (open(path, 'rb'), 'export_calendars.zip')}
     raw = app.post('/coverages/jdr/grid_calendar', data=files)
     r = to_json(raw)
-    input_dir = coverage_jdr.get('technical_conf').get('input_dir')
+    import pprint
+    pprint.pprint(coverage_jdr)
+    input_dir = coverage_jdr.technical_conf.input_dir
     assert input_dir == '/srv/tartare/id_test/input'
     assert raw.status_code == 200
     assert r.get('message') == 'OK'
