@@ -40,13 +40,13 @@ from tests.utils import to_json
 def coverage_jdr(app):
     coverage_jdr = app.post('/coverages',
                 headers={'Content-Type': 'application/json'},
-               data='{"id": "jdr", "name": "name of the coverage jdr", "input_dir": "/srv/tartare/id_test/input"}')
+               data={"id": "jdr", "name": "name of the coverage jdr", "input_dir": "/srv/tartare/id_test/input"})
     return coverage_jdr
 
 
 def test_post_grid_calendar_returns_success_status(app, coverage_jdr):
     filename = 'export_calendars.zip'
-    path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'fixtures/gridcalendar/', filename)
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'fixtures/gridcalendar/', filename)
     files = {'file': (open(path, 'rb'), 'export_calendars.zip')}
     raw = app.post('/coverages/jdr/grid_calendar', data=files)
     r = to_json(raw)
@@ -58,7 +58,7 @@ def test_post_grid_calendar_returns_success_status(app, coverage_jdr):
 
 
 def test_post_grid_calendar_returns_non_compliant_file_status(app, coverage_jdr):
-    path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
                         'fixtures/gridcalendar/export_calendars_with_invalid_header.zip')
     files = {'file': (open(path, 'rb'), 'export_calendars.zip')}
     raw = app.post('/coverages/jdr/grid_calendar', data=files)
@@ -68,7 +68,7 @@ def test_post_grid_calendar_returns_non_compliant_file_status(app, coverage_jdr)
 
 
 def test_post_grid_calendar_returns_file_missing_status(app, coverage_jdr):
-    path = os.path.join(os.path.dirname(os.path.dirname(__file__)),
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
                         'fixtures/gridcalendar/export_calendars_without_grid_calendars.zip')
     files = {'file': (open(path, 'rb'), 'export_calendars.zip')}
     raw = app.post('/coverages/jdr/grid_calendar', data=files)
