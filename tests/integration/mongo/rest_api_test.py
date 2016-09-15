@@ -37,8 +37,8 @@ from tests.utils import to_json
 
 
 @pytest.fixture(scope="module")
-def coverage_jdr():
-    coverage_jdr = tartare.app.post('/coverages',
+def coverage_jdr(app):
+    coverage_jdr = app.post('/coverages',
                '{"id": "jdr", "name": "name of the coverage jdr", "input_dir": "/srv/tartare/id_test/input"}')
     return coverage_jdr
 
