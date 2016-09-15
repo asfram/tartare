@@ -51,7 +51,7 @@ def test_post_grid_calendar_returns_success_status(app, coverage_jdr):
     raw = app.post('/coverages/jdr/grid_calendar', data=files)
     r = to_json(raw)
     input_dir = coverage_jdr['technical_conf']['input_dir']
-    assert input_dir == '/srv/tartare/id_test/input'
+    assert input_dir == './input/jdr'
     assert raw.status_code == 200
     assert r.get('message') == 'OK'
     assert os.path.exists(os.path.join(input_dir, filename))
