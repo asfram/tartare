@@ -41,7 +41,7 @@ def coverage_jdr(app):
     coverage_jdr = app.post('/coverages',
                 headers={'Content-Type': 'application/json'},
                data='{"id": "jdr", "name": "name of the coverage jdr"}')
-    return to_json(coverage_jdr)
+    return to_json(coverage_jdr)['coverage']
 
 
 def test_post_grid_calendar_returns_success_status(app, coverage_jdr):
