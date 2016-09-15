@@ -104,7 +104,7 @@ class GridCalendar(Resource):
             return {'message': 'non-compliant file(s) : {}'.format(''.join(invalid_files))}, 400
 
         # backup content
-        input_dir = json.loads(coverage_jdr.data.decode('utf-8'))['coverage']['technical_conf']['input_dir']
+        input_dir = json.loads(coverage.data.decode('utf-8'))['coverage']['technical_conf']['input_dir']
         if not os.path.exists(input_dir):
             os.makedirs(input_dir)
         content.stream.seek(0)
