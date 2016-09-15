@@ -40,7 +40,7 @@ from tests.utils import to_json
 def coverage_jdr(app):
     coverage_jdr = app.post('/coverages',
                 headers={'Content-Type': 'application/json'},
-               '{"id": "jdr", "name": "name of the coverage jdr", "input_dir": "/srv/tartare/id_test/input"}')
+               data='{"id": "jdr", "name": "name of the coverage jdr", "input_dir": "/srv/tartare/id_test/input"}')
     return coverage_jdr
 
 
